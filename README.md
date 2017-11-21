@@ -70,7 +70,7 @@ solution section and how to execute the solution.
 Two ways of solving this problem are proposed:
 
 1. Using DEAP to implement a classic genetic algorithm.
-2. Using proprietary implementation of the Simulated Annealing algorithm.
+2. Using proprietary implementation of the [Simulated Annealing](https://en.wikipedia.org/wiki/Simulated_annealing) algorithm.
 
 # How to execute it?
 
