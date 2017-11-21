@@ -62,7 +62,7 @@ def fitness(chromosome, coordinates):
 
 It is important to specify what the genes and the chromosome will be.
 
-Please, use any CI technology with coverage and code quality, and complete the some section in `README.md` like
+Please, use any CI technology with coverage and code quality, and complete more section in `README.md` like
 solution section and how to execute the solution.
 
 # The solution
