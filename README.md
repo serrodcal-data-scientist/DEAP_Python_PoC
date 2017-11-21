@@ -22,9 +22,10 @@ using some artificial intelligence technique.
 
 Its headquarter is located in [Seville](https://en.wikipedia.org/wiki/Seville), and they deliver orders
 for [Andalusia](https://en.wikipedia.org/wiki/Andalusia). Simplify, is able to go from any point to any other point using
-the Euclidean distance.
+the Euclidean distance, and
 
 Note, that this problem is focused as [local search or optimization problem](https://en.wikipedia.org/wiki/Local_search_(optimization)).
+And, it is not necessary to start deliveries from the company's headquarter.
 
 First, a dictionary with the provinces and their coordinates is provided:
 
