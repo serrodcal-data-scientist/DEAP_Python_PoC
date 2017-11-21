@@ -1,5 +1,9 @@
 # DEAP_Python_PoC
 
+[![Build Status](https://travis-ci.org/serrodcal/DEAP_Python_PoC.svg?branch=master)](https://travis-ci.org/serrodcal/DEAP_Python_PoC)
+[![Coverage Status](https://coveralls.io/repos/github/serrodcal/DEAP_Python_PoC/badge.svg?branch=master)](https://coveralls.io/github/serrodcal/DEAP_Python_PoC?branch=master)
+[![Code Health](https://landscape.io/github/serrodcal/DEAP_Python_PoC/master/landscape.svg?style=flat)](https://landscape.io/github/serrodcal/DEAP_Python_PoC/master)
+
 This project is a proof of concept about [DEAP](http://deap.readthedocs.io/en/master/overview.html) in Python
 developed by Fernando Jiménez and Sergio Rodríguez.
 
