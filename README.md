@@ -42,26 +42,6 @@ andalusia = {
               }
 ```
 
-And, `euclidean_distance_2D`, `raffle` and `fitness` functions are provided:
-
-```
-import math
-import random
-
-def raffle(probability):
-    return (random.random() < probability)
-
-def euclidean_distance_2D(city_1, city_2, coordinates):
-    city_1_coord = coordinates[city_1]
-    city_2_coord = coordinates[city_2]
-    return math.hypot(city_1_coord[0]-city_2_coord[0], city_1_coord[1]-city_2_coord[1])
-
-def fitness(chromosome, coordinates):
-    return sum(euclidean_distance_2D(chromosome[i], chromosome[i+1], coordinates) for i in range(len(chromosome)-1)) + euclidean_distance_2D(chromosome[-1], chromosome[0], coordinates)
-```
-
-It is important to specify what the genes and the chromosome will be.
-
 Please, use any CI technology with coverage and code quality, and complete more section in `README.md` like
 solution section and how to execute the solution.
 
