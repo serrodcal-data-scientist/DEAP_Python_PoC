@@ -41,7 +41,7 @@ andalusia = {
               }
 ```
 
-And, finally, `euclidean_distance_2D`, `raffle` and `fitness` functions are provided:
+And, `euclidean_distance_2D`, `raffle` and `fitness` functions are provided:
 
 ```
 import math
@@ -61,6 +61,9 @@ def fitness(chromosome, coordinates):
 
 It is important to specify what the genes and the chromosome will be.
 
+Please, use any CI technology with coverage and code quality, and complete the some section in `README.md` like
+solution section and how to execute the solution.
+
 # The solution
 
 Two ways of solving this problem are proposed:
@@ -68,10 +71,20 @@ Two ways of solving this problem are proposed:
 1. Using DEAP to implement a classic genetic algorithm.
 2. Using proprietary implementation of the Simulated Annealing algorithm.
 
-# How to execute it
+# How to execute it?
+
+## Technologies
 
 _In progress_.
 
-# Do you prefer docker?
+## Prerequisites
+
+_In progress_.
+
+## Run by console
+
+_In progress_.
+
+## Do you prefer docker?
 
 _In progress_.
