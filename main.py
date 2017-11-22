@@ -33,29 +33,28 @@ def evaluate(individual):
     coordinates = [(409.5,93), (63,57), (198,207), (309,127.5), (3,139.5), (295.5,192), (232.5,75), (90,135)]
     return fitness(individual, coordinates),
 
-def deap(genes):
+def deap(genes, toolbox = base.Toolbox(), pop_size = 1, ind_randomly = False, evaluate_function = evaluate):
+
+    if genes is None or not genes:
+        raise Exception("List can not be None or empty.")
+
+    if ind_randomly:
+        toolbox.register("indices", generate_individual_randomly, genes)
+    else:
+        toolbox.register("indices", generate_individual, genes) # Gen, in this case, a number which represents a city.
+
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", list, fitness=creator.FitnessMin)
-
-    IND_SIZE=8
-
-    toolbox = base.Toolbox()
-
-    toolbox.register("indices", generate_individual, genes) # Gen, in this case, a number which represents a city.
-    #toolbox.register("indices", generate_individual_randomly, genes)
-
     toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.indices) # Define a route of cities. A chromosome.
 
     """toolbox.register("mate", tools.cxTwoPoint)
     toolbox.register("mutate", tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("select", tools.selTournament, tournsize=3)
-    toolbox.register("evaluate", evaluate)"""
+    toolbox.register("evaluate", evaluate_function)"""
 
     toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-    POP_SIZE = 50
-
-    pop = toolbox.population(n=POP_SIZE)
+    pop = toolbox.population(n = pop_size)
 
     """CXPB, MUTPB, NGEN = 0.5, 0.2, 40
 
@@ -108,45 +107,11 @@ if __name__ == "__main__":
                     "Seville": (90,135) # Sevilla
                 }
 
+    # WIP: Implement genetic algorithm usgin DEAP library.
+
+    POP_SIZE = 1
+    cities = list(andalusia.keys())
+
+    print(deap(cities))
+
     # TODO: Implement simulated_annealing function.
-    # TODO: Implement genetic algorithm usgin DEAP library.
-    #
-    print(deap(list(andalusia.keys())))
-
-"""def main():
-    pop = toolbox.population(n=50)
-    CXPB, MUTPB, NGEN = 0.5, 0.2, 40
-
-    # Evaluate the entire population
-    fitnesses = map(toolbox.evaluate, pop)
-    for ind, fit in zip(pop, fitnesses):
-        ind.fitness.values = fit
-
-    for g in range(NGEN):
-        # Select the next generation individuals
-        offspring = toolbox.select(pop, len(pop))
-        # Clone the selected individuals
-        offspring = map(toolbox.clone, offspring)
-
-        # Apply crossover and mutation on the offspring
-        for child1, child2 in zip(offspring[::2], offspring[1::2]):
-            if random.random() < CXPB:
-                toolbox.mate(child1, child2)
-                del child1.fitness.values
-                del child2.fitness.values
-
-        for mutant in offspring:
-            if random.random() < MUTPB:
-                toolbox.mutate(mutant)
-                del mutant.fitness.values
-
-        # Evaluate the individuals with an invalid fitness
-        invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
-        fitnesses = map(toolbox.evaluate, invalid_ind)
-        for ind, fit in zip(invalid_ind, fitnesses):
-            ind.fitness.values = fit
-
-        # The population is entirely replaced by the offspring
-        pop[:] = offspring
-
-    return pop"""
