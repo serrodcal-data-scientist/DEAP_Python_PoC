@@ -5,6 +5,7 @@ from deap import base, creator, tools
 """
     genes = andalusia.keys()
     chromosome = random.shuffle(genes)
+    target_function = def evaluate(individual): ... or def fitness (chromosome, ...): ...
 """
 
 def generate_individual(genes):
@@ -13,6 +14,10 @@ def generate_individual(genes):
 def generate_individual_randomly(genes):
     random.shuffle(genes)
     return genes
+
+def evaluate(individual):
+    coordinates = [(409.5,93), (63,57), (198,207), (309,127.5), (3,139.5), (295.5,192), (232.5,75), (90,135)]
+    return fitness(individual, coordinates),
 
 def raffle(probability):
     return (random.random() < probability)
@@ -28,10 +33,6 @@ def fitness(chromosome, coordinates):
         acc += euclidean_distance_2D(chromosome[i], chromosome[i+1], coordinates)
     return acc + euclidean_distance_2D(chromosome[-1], chromosome[0], coordinates)
     # return sum(euclidean_distance_2D(chromosome[i], chromosome[i+1], coordinates) for i in range(len(chromosome)-1)) + euclidean_distance_2D(chromosome[-1], chromosome[0], coordinates)
-
-def evaluate(individual):
-    coordinates = [(409.5,93), (63,57), (198,207), (309,127.5), (3,139.5), (295.5,192), (232.5,75), (90,135)]
-    return fitness(individual, coordinates),
 
 def deap(genes, toolbox = base.Toolbox(), pop_size = 1, ind_randomly = False, evaluate_function = evaluate):
 
