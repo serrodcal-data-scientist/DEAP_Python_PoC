@@ -7,11 +7,12 @@ from deap import base, creator, tools
     chromosome = random.shuffle(genes)
 """
 
-def generate_individual():
-    return ["Almeria","Cadiz","Cordoba","Granada","Huelva","Jaen","Malaga", "Seville"]
+def generate_individual(genes):
+    return genes
 
-"""def generate_individual_randomly():
-    return random.shuffle(["Almeria","Cadiz","Cordoba","Granada","Huelva","Jaen","Malaga", "Seville"])"""
+def generate_individual_randomly(genes):
+    random.shuffle(genes)
+    return genes
 
 def raffle(probability):
     return (random.random() < probability)
@@ -32,7 +33,7 @@ def evaluate(individual):
     coordinates = [(409.5,93), (63,57), (198,207), (309,127.5), (3,139.5), (295.5,192), (232.5,75), (90,135)]
     return fitness(individual, coordinates),
 
-def deap():
+def deap(genes):
     creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
     creator.create("Individual", list, fitness=creator.FitnessMin)
 
@@ -40,7 +41,8 @@ def deap():
 
     toolbox = base.Toolbox()
 
-    toolbox.register("indices", generate_individual) # Gen, in this case, a number which represents a city.
+    toolbox.register("indices", generate_individual, genes) # Gen, in this case, a number which represents a city.
+    #toolbox.register("indices", generate_individual_randomly, genes)
 
     toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.indices) # Define a route of cities. A chromosome.
 
@@ -109,7 +111,7 @@ if __name__ == "__main__":
     # TODO: Implement simulated_annealing function.
     # TODO: Implement genetic algorithm usgin DEAP library.
     #
-    print(deap())
+    print(deap(list(andalusia.keys())))
 
 """def main():
     pop = toolbox.population(n=50)
