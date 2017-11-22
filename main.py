@@ -7,6 +7,12 @@ from deap import base, creator, tools
     chromosome = random.shuffle(genes)
 """
 
+def generate_individual():
+    return ["Almeria","Cadiz","Cordoba","Granada","Huelva","Jaen","Malaga", "Seville"]
+
+"""def generate_individual_randomly():
+    return random.shuffle(["Almeria","Cadiz","Cordoba","Granada","Huelva","Jaen","Malaga", "Seville"])"""
+
 def raffle(probability):
     return (random.random() < probability)
 
@@ -33,13 +39,15 @@ def deap():
     IND_SIZE=8
 
     toolbox = base.Toolbox()
-    toolbox.register("indices", random.sample, range(IND_SIZE), IND_SIZE) # Gen, in this case, a number which represents a city.
+
+    toolbox.register("indices", generate_individual) # Gen, in this case, a number which represents a city.
+
     toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.indices) # Define a route of cities. A chromosome.
 
-    toolbox.register("mate", tools.cxTwoPoint)
+    """toolbox.register("mate", tools.cxTwoPoint)
     toolbox.register("mutate", tools.mutGaussian, mu=0, sigma=1, indpb=0.1)
     toolbox.register("select", tools.selTournament, tournsize=3)
-    toolbox.register("evaluate", evaluate)
+    toolbox.register("evaluate", evaluate)"""
 
     toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
@@ -47,7 +55,7 @@ def deap():
 
     pop = toolbox.population(n=POP_SIZE)
 
-    CXPB, MUTPB, NGEN = 0.5, 0.2, 40
+    """CXPB, MUTPB, NGEN = 0.5, 0.2, 40
 
     # Evaluate the entire population
     fitnesses = map(toolbox.evaluate, pop)
@@ -79,7 +87,7 @@ def deap():
             ind.fitness.values = fit
 
         # The population is entirely replaced by the offspring
-        pop[:] = offspring
+        pop[:] = offspring"""
 
     return pop
 
@@ -88,14 +96,14 @@ def simulated_annealing():
 
 if __name__ == "__main__":
     andalusia = {
-                    0: (409.5,93), # Almería
-                    1: (63,57), # Cádiz
-                    2: (198,207), # Córdoba
-                    3: (309,127.5), # Granada
-                    4: (3,139.5), # Huelva
-                    5: (295.5,192), # Jaén
-                    6: (232.5,75), # Málaga
-                    7: (90,135) # Sevilla
+                    "Almeria": (409.5,93), # Almería
+                    "Cadiz": (63,57), # Cádiz
+                    "Cordoba": (198,207), # Córdoba
+                    "Granada": (309,127.5), # Granada
+                    "Huelva": (3,139.5), # Huelva
+                    "Jaen": (295.5,192), # Jaén
+                    "Malaga": (232.5,75), # Málaga
+                    "Seville": (90,135) # Sevilla
                 }
 
     # TODO: Implement simulated_annealing function.
