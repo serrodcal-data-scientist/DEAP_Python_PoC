@@ -3,4 +3,5 @@ python:
  - "3.6"
 install: pip3 install -r requirements.txt
 notifications:
+    email: false
     slack: deappythonpoc:bMjRM7XUo1OARlGY16t8HycL
